@@ -6,51 +6,172 @@
     background-color: #f7f7f7;
 }
 
-.cards{
+.full-body{
     display: flex;
-    align-items: center;
     flex-direction: column;
-    margin: 90px 0;
+    margin-top: 50px;
 }
 
-.cards h1{
+.full-body h1{
     font-size: 50px;
     margin-bottom: 45px;
     text-align: center;
 }
 
-.card-row{
-    width: 65%;
+.cards{
     display: flex;
-    /* margin: 45px 0; */
-    gap: 30px;
-}
-
-.card{
-    width: 40%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
     align-items: center;
-    border-radius: 25px;
-    background-color: white;
-    height: 29vh;
-    margin-bottom: 45px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 30px;
 }
 
-.card h2{
-    background-color: white;
+.card {
+  overflow: visible;
+  width: 20%;
+  height: 40vh;
+}
+
+.content {
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 300ms;
+  box-shadow: 0px 0px 10px 1px #000000ee;
+  border-radius: 5px;
+}
+
+.front, .back {
+  background-color: #151515;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.back {
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.back::before {
+  position: absolute;
+  content: ' ';
+  display: block;
+  width: 160px;
+  height: 160%;
+  background: linear-gradient(90deg, transparent, #ff9966, #ff9966, #ff9966, #ff9966, transparent);
+  animation: borderGlow 10s infinite linear;
+}
+
+.back-content {
+  position: absolute;
+  width: 98%;
+  height: 99%;
+  background-color: #151515;
+  border-radius: 5px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.back-content img{
+    width: 200px;
+    height: 200px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+.back-content h2{
+    background-color: transparent;
     text-align: center;
-    font-weight: lighter;
-    /* margin-bottom: 20px; */
+    margin-top: 20px;
+    color: rgb(3, 249, 253);
+    font-weight: 800;
+    background: linear-gradient(90deg, transparent, #ff9966, #ff9966, #ff9966, #ff9966, transparent);
 }
 
-.card img{
-    width: 25%;
-    /* margin-top: 40px; */
-    margin: 20px 0;
+.card:hover .content{
+  transform: rotateY(180deg);
 }
+
+@keyframes borderGlow {
+  0% {
+    transform: rotateZ(0deg);
+  }
+
+  0% {
+    transform: rotateZ(360deg);
+  }
+}
+
+.front {
+  transform: rotateY(180deg);
+  color: white;
+}
+
+.front .front-content {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  text-align: center;
+}
+
+.social-links {
+    display: flex;
+    gap: 14px;
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.social-links a {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #ff9966, #ff5e62);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    place-items: center;
+    font-size: 18px;
+    text-decoration: none;
+    box-shadow: 0 8px 16px rgba(255, 102, 102, 0.25);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.social-links a i{
+    background-color: transparent;
+    color: rgb(3, 249, 253);
+    font-size: 20px;
+}
+
+.social-links a:hover {
+    transform: translateY(-4px) scale(1.05);
+    box-shadow: 0 12px 22px rgba(255, 94, 98, 0.35);
+}
+
+.card:hover .front .social-links {
+    opacity: 1;                   
+    transform: translateY(0);     
+}
+
 
 .btn-design{
     padding: 13px 35px;
@@ -60,139 +181,18 @@
     color: white;
     font-size: 16px;
     font-weight: bolder;
-    /* margin-bottom: 25px; */
 }
 
-.btn-design:hover{
-    background-color: #3A4FBD;
+@keyframes floating {
+  0% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(10px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
 }
-
-@media (max-width: 1559px) {
-    .card-row{
-        width: 70%;
-    }
-}
-
-@media (max-width: 1465px) {
-    .card-row{
-        width: 75%;
-    }
-}
-
-@media (max-width: 1357px) {
-    .card-row{
-        width: 80%;
-    }
-}
-
-@media (max-width: 1245px) {
-    .card-row{
-        width: 85%;
-    }
-}
-
-@media (max-width: 1165px) {
-    .card-row{
-        width: 90%;
-    }
-}
-
-@media (max-width: 960px) {
-    .btn-design{
-        padding: 13px 30px;
-    }
-}
-
-@media (max-width: 925px) {
-    .btn-design{
-        padding: 13px 25px;
-    }
-}
-
-@media (max-width: 894px) {
-    .btn-design{
-        padding: 13px 20px;
-    }
-}
-
-@media (max-width: 852px) {
-    .btn-design{
-        padding: 13px 15px;
-    }
-}
-
-@media (max-width: 810px) {
-   .card-row{
-        width: 100%;
-        padding: 20px;
-   }
-
-   .card{
-        width: 100%;
-        padding-left: 10px;
-        padding-right: 10px;
-   }
-
-   .btn-design{
-        font-size: 12px;
-   }
-}
-
-@media (max-width: 795px) {
-    .btn-design{
-        padding: 13px 10px;
-    }
-}
-
-@media (max-width: 762px) {
-    .card-row{
-        width: 100%;
-        padding: 20px;
-    }
-}
-
-@media (max-width: 722px) {
-    .card-row{
-        width: 100%;
-    }
-
-    .card{
-        width: 100%;
-        padding-left: 10px;
-        padding-right: 10px;
-    }
-}
-
-@media (max-width: 596px) {
-    .cards h1{
-        width: 100%;
-        text-align: center;
-    }
-}
-
-@media (max-width: 510px) {
-    .cards h1{
-        width: 100%;
-        text-align: center;
-    }
-}
-
-@media (max-width: 520px) {
-    .cards h1{
-        width: 100%;
-        text-align: center;
-        font-size: 40px;
-    }
-
-    .card-row{
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        padding: 20px;
-    }
-
-    .card{
-        width: 100%;
-    }
-}
-
